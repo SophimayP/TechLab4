@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>WeatherWear</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">     
+<!-- ------FONTS AND CSS------- -->
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/skeleton.css">
+        <link rel="stylesheet" href="css/rangeslider.css">
+        <link rel="stylesheet" href="css/style.css">       
+<!-- ------FAVICON------- -->    
+        <link rel="icon" type="image/png" href="images/favicon.png">
+	</head>
+	<body>  
+<!-- ------MAIN PAGE LAYOUT------- -->
+        <div id="headBar">
+            <div class="row">
+                <div class="one-third column">
+                    <div id="barLocDisp" class="headBarTxt">.</div>
+                </div>
+                <div class="one-third column">
+                    <img id="logo" src="images/weatherwear.png">
+                </div>
+                <div class="one-third column">
+                    <div id="barTempDisp" class="headBarTxt">.</div>
+                </div>
+            </div>
+        </div>
+        <div id="navBar">
+            <div id="navContain">
+                <div id="metServBtn" class="navBtn">
+                    <img class="navImg" src="images/metServ.png">
+                </div>  
+                <div id="dispOthersBtn" class="navBtn">
+                    <img class="navImg" src="images/others.png">
+                </div>
+                <div id="enterDataBtn" class="navBtn">
+                    <img class="navImg" src="images/enter.png">
+                </div>
+                <div id="stretchCon"></div>
+            </div>
+        </div>
+        <div id="stretchCon"></div>
+        <div id="landingPage">
+            <h1>Welcome to WeatherWear!</h1>
+            <p>The aim of this web app is to provide a humanised view of weather data - suitable clothing for the day.</p>
+            <p>This is acheived through three different functionalities:</p>
+            <ul>
+                <li>Check out the recommended clothing layers with data provided by the MetService.</li>
+                <li>See what others in your area are wearing. (Currently under development so will only show what people are wearing in Wellington)</li>
+                <li>Help us out and enter your own outfit of the day.</li>
+            </ul>
+            <p>First make sure you have allowed your location and you can see your city in the top left corner and the current temperature in the top right then click any of the three respective icons in the navigation at the top of the page to begin.</p>
+            <p>Thanks to <a href="http://metservice.com/national/home">MetService</a> for weather data and <a href="https://www.google.co.nz/">Google</a> for geolocation.</p>
+        </div>
+        <div id="metservData">
+            <h1>MetService Outfit</h1>
+            <img class="oImg" id="1" src="images/outfits/4.png">
+            <img class="oImg" id="1to2" src="images/outfits/5.png">
+            <img class="oImg" id="2" src="images/outfits/6.png">
+            <img class="oImg" id="2to3" src="images/outfits/7.png">
+            <img class="oImg" id="3" src="images/outfits/8.png">
+            <img class="oImg" id="3to4" src="images/outfits/9.png">
+            <p><div id="weatherDisp"></div></p>
+            <p><div id="layersDisp"></div></p>
+            <p><div id="rainDisp"></div></p>
+            <p>Data provided by <a href="http://metservice.com/national/home">MetService</a>.</p>
+        </div>
+        <div id="othersData">
+            <h1>What Others are Wearing</h1>
+            <p>(Currently under development so will only show what people are wearing in Wellington)</p>
+            <div id="change"></div>    
+        </div>
+        <div id="enterData">
+            <form>
+                <h1>Enter your outfit:</h1>     
+
+                <img class="oImg" id="o1" src="images/outfits/1.png">
+                <img class="oImg" id="o2" src="images/outfits/2.png">
+                <img class="oImg" id="o3" src="images/outfits/3.png">
+                <img class="oImg" id="o4" src="images/outfits/4.png">
+                <img class="oImg" id="o5" src="images/outfits/5.png">
+                <img class="oImg" id="o6" src="images/outfits/6.png">
+                <img class="oImg" id="o7" src="images/outfits/7.png">
+                <img class="oImg" id="o8" src="images/outfits/8.png">
+                <img class="oImg" id="o9" src="images/outfits/9.png">
+
+                <div id="sliderBox">
+                    <input id="slider" type="range" min="1" max="9" step="1" value="5"/>
+                </div>
+                <h5>Taking a raincoat/umbrella?</h5>
+                <input type="checkbox" name="Rain" id="rain"><label for="rain"></label>
+                <p></p>
+                <input class="button-primary" type="submit" id="submit">	
+            </form> 
+        </div>
+        <div id="footerBar">
+            <p>© Sophie Price - All Rights Reserved // Project 2 for MDDN352 // 2016 // Victoria University of Wellington</p>   
+        </div> 
+
+        <div id="currCity">
+        Wellington
+        </div>
+        <form><textarea cols="36" rows="4" name="new" style="width:350px;" onchange="EffectReplacement(this)" wrap="on"></textarea><br/>
+        <input type="button" value="Change Content" style="width:350px;"></form>
+
+
+<!-- ------SCRIPTS AND PLUGINS----- -->
+        <script id="home-template" type="text/x-handlebars-template">
+		    	<div class="grid">
+		    	{{#each wellington}}
+		    		<div class="anEntry">
+                        <div class="entryImg">{{scale}}</div>
+                        <p>Took a raincoat: {{rain}}</p>
+		    		</div>		    	
+		    	{{/each}}
+		    	</div>
+		</script>            
+        <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.1/handlebars.min.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ7402uvsGRTOP_pqKkRm3fjWXbeIJ7pg"></script>
+        <script src="js/rangeslider.min.js"></script>   
+        <script src="js/packery.pkgd.min.js"></script>
+        <script src="js/draggabilly.pkgd.min.js"></script>
+        <script src="js/app.js"></script> 
+	</body>
+</html>
