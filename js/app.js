@@ -110,7 +110,6 @@ function updatePic() {
 
 /*------------------ DISPLAY ---------------------*/
 $(document).ready(function(){
-    getlocation(); //partial callback working geolocation
 	
     //initial hide the three parts of the app
     $("#metservData").hide();
@@ -143,6 +142,8 @@ $(document).ready(function(){
         $("#metservData").hide();
         $("#landingPage").hide();
     });
+    
+    getlocation(); //partial callback working geolocation
     
     aFunct(2, function(bits){
         console.log(bits);  //callback understanding experiment
