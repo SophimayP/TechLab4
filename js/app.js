@@ -209,8 +209,8 @@ $(document).ready(function(){
         $("#landingPage").hide();
     });
     
-    $('#mybutton').click(function() {
-	var text = $('#mytextarea').val();
+    $('#cityBtn').click(function() {
+	var text = $('#inputCity').val();
 	document.getElementById("barLocDisp").innerHTML = text;
     });
     
