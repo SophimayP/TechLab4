@@ -208,6 +208,13 @@ $(document).ready(function(){
         $("#metservData").hide();
         $("#landingPage").hide();
     });
+    
+    $('#mybutton').click(function() {
+	var text = $('#mytextarea').val();
+	document.getElementById("barLocDisp").innerHTML = text;
+    });
+    
+    
     aFunct(2, function(bits){
         console.log(bits);  //callback eg
     });
