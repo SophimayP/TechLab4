@@ -18,11 +18,20 @@ if (navigator.geolocation) {
             document.getElementById("barLocDisp").innerHTML = cityUpper;
             city = location.address_components[2].short_name; //Getting the current city
             city = city.replace(/\s+/g, '-').toLowerCase(); //making lowercase and any spaces change to - so that it will not break URL and cities like New Plymouth become new-plymouth which works with the URL. 
-              
-            /* -------------- WEATHER ------------ */
+            getWeatherData(city);
+            break;
+          }
+        }
+      }
+    });
+  });
+}
+
+function getWeatherData(aCity){
+	/* -------------- WEATHER ------------ */
             //Metservice JSON can't seem to be used as has an origin error:  http://metservice.com/publicData/localForecastwellington and Sam Jones was passing it through a proxy which he let me use - hope thats ok as it's the same data I'm receiving all I'm swapping out is the URL and it saves me having to host it on a third party proxy server myself just to get pass the origin not being allowed.
             var metServ = "http://uni.ey.nz/metservice.php?localObs_";
-            var jsonURL = metServ + city;
+            var jsonURL = metServ + aCity;
             $.getJSON(jsonURL, function (json) {
              var clothingLayers = json.threeHour.clothingLayers;
              $("#1").hide();
@@ -63,14 +72,7 @@ if (navigator.geolocation) {
                  document.getElementById("rainDisp").innerHTML = "There's been just " + rainFall + "mm of rainfall today so don't worry about a raincoat.";
              }
             });
-            break;
-          }
-        }
-      }
-    });
-  });
 }
-
 /* -------------- DATABASE ------------ */
 var data = new Firebase("https://intense-fire-1222.firebaseio.com/");
 data.on("value", function(snapshot){
