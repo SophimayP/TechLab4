@@ -211,7 +211,7 @@ $(document).ready(function(){
     
     $('#cityBtn').click(function() {
 	var text = $('#inputCity').val();
-	document.getElementById("barLocDisp").innerHTML = text;
+	document.getElementById("barLocDisp").innerHTML = "diff";
 	city = text;
     });
     
