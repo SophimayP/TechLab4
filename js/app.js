@@ -209,9 +209,10 @@ $(document).ready(function(){
         $("#landingPage").hide();
     });
     
-    $('#cityBtn').click(function() {
+    $("#cityBtn").click(function() {
 	var text = $('#inputCity').val();
 	document.getElementById("barLocDisp").innerHTML = "diff";
+	$("#landingPage").hide();
 	city = text;
     });
     
