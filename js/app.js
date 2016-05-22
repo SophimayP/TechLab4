@@ -215,6 +215,8 @@ $(document).ready(function(){
 	var text = $("#inputCity").val();
 	document.getElementById("barLocDisp").innerHTML = text;
 	city = text;
+	cityUpper = text;
+	getWeatherData(text);
     });
     
     
