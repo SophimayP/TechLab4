@@ -208,4 +208,11 @@ $(document).ready(function(){
         $("#metservData").hide();
         $("#landingPage").hide();
     });
+    aFunct(2, function(bits){
+        console.log(bits);  //callback eg
+    });
 });
+function aFunct(number, callback){
+    var bit = number +1;   //callback eg
+    callback(bit);
+};
